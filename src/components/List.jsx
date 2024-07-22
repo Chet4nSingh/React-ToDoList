@@ -6,6 +6,11 @@ export default function List() {
   const input = useRef();
 
   function handleAddTask() {
+
+    if (input.current.value.trim() === '') {
+      return;
+    }
+
     const newTask = {
       task: input.current.value,
       id: Math.random() * 1000,
@@ -20,7 +25,7 @@ export default function List() {
   }
 
   return (
-    <main className="w-2/3 bg-black text-white flex justify-center items-center">
+    <main className="w-2/3 bg-zinc-800 text-white flex justify-center items-center">
       <div id="list" className="w-2/3 bg-teal-700 p-8">
         <div className="border flex justify-between">
           <input
