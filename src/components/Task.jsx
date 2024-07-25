@@ -5,20 +5,25 @@ export default function Task({ task, onDelete }) {
   const [editedTask, setEditedTask] = useState(task.task);
 
   function handleEditTask() {
-    setIsEditing(prevState => !prevState);
+    setIsEditing((prevState) => !prevState);
   }
 
-  function handleChange(e) {  
-    task.task = e.target.value;  
+  function handleChange(e) {
+    task.task = e.target.value;
     setEditedTask(e.target.value);
   }
 
   return (
     <li className="p-4 my-6 group flex justify-between items-center border hover:scale-[1.025]">
       {isEditing ? (
-        <input type="text" onChange={handleChange} value={editedTask} className="p-2 pl-4 w-3/4 outline-none text-black" />
+        <input
+          type="text"
+          onChange={handleChange}
+          value={editedTask}
+          className="p-2 pl-4 w-3/4 outline-none text-black"
+        />
       ) : (
-        <p className="p-2 w-3/4" >{editedTask}</p>
+        <p className="p-2 w-3/4 font-bold">{editedTask}</p>
       )}
       <div className="hidden gap-4 group-hover:block">
         <button onClick={handleEditTask}>
