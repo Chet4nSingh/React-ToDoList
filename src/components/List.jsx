@@ -6,22 +6,37 @@ export default function List() {
   const input = useRef();
 
   function handleAddTask() {
-
-    if (input.current.value.trim() === '') {
+    if (input.current.value.trim() === "") {
       return;
     }
-    
+
     const newTask = {
       task: input.current.value,
       id: Math.random() * 1000,
+      isComplete: false,
     };
 
     setTasks((prevTasks) => [newTask, ...prevTasks]);
-    input.current.value = '';
+    input.current.value = "";
+  }
+
+  function handleCompleteTask(id) {
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            isComplete: !task.isComplete,
+          };
+        }
+        return task;
+      });
+      return updatedTasks;
+    });
   }
 
   function handleDeleteTask(id) {
-    setTasks((prevTasks) => [...prevTasks.filter(task => task.id !== id)]);
+    setTasks((prevTasks) => [...prevTasks.filter((task) => task.id !== id)]);
   }
 
   return (
@@ -41,9 +56,18 @@ export default function List() {
             Add Task
           </button>
         </div>
-        <ul>{tasks.map(task => {
-            return <Task key={task.id} task={task} onDelete={handleDeleteTask} />
-        })}</ul>
+        <ul>
+          {tasks.map((task) => {
+            return (
+              <Task
+                key={task.id}
+                task={task}
+                onComplete={handleCompleteTask}
+                onDelete={handleDeleteTask}
+              />
+            );
+          })}
+        </ul>
       </div>
     </main>
   );

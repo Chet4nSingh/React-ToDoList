@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Task({ task, onDelete }) {
+export default function Task({ task, onComplete, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTask, setEditedTask] = useState(task.task);
 
@@ -16,7 +16,7 @@ export default function Task({ task, onDelete }) {
   return (
     <li className="p-4 my-6 group flex justify-between items-center border hover:scale-[1.025]">
       <div className="flex items-center">
-        <button><i className="fa-solid fa-square-check mr-2 hover:scale-110 hover:text-slate-200"></i></button>
+        <button onClick={() => onComplete(task.id)} className={`w-4 h-4 border ${task.isComplete? 'bg-white': ''}`}></button>
         {isEditing ? (
           <input
             type="text"
@@ -25,7 +25,7 @@ export default function Task({ task, onDelete }) {
             className="p-2 pl-4 w-3/4 outline-none text-black"
           />
         ) : (
-          <p className="p-2 w-3/4 font-bold">{editedTask}</p>
+          <p className={`p-2 w-3/4 font-bold ${task.isComplete? 'line-through': ''}`}>{editedTask}</p>
         )}
       </div>
       <div className="hidden gap-4 group-hover:block">
