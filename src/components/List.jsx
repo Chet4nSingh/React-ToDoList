@@ -40,7 +40,7 @@ export default function List() {
   }
 
   return (
-    <main className="w-2/3 bg-zinc-800 text-white flex justify-center items-center">
+    <main className="w-full h-screen lg:w-2/3 bg-zinc-800 text-white flex justify-center items-center">
       <div id="list" className="w-2/3 bg-teal-700 border p-8">
         <div className="border flex justify-between">
           <input
