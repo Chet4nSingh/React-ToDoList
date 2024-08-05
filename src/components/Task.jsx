@@ -10,22 +10,22 @@ export default function Task({ task, onComplete, onDelete }) {
 
   function handleChange(e) {
     task.task = e.target.value;
-    setEditedTask(e.target.value);
+    setEditedTask(e.target.value);    
   }
 
   return (
     <li className="p-4 my-6 group flex justify-between items-center border hover:scale-[1.025]">
-      <div className="flex items-center">
+      <div className="w-3/4 flex items-center gap-4">
         <button onClick={() => onComplete(task.id)} className={`w-4 h-4 border ${task.isComplete? 'bg-white': ''}`}></button>
         {isEditing ? (
           <input
             type="text"
             onChange={handleChange}
             value={editedTask}
-            className="p-2 pl-4 w-3/4 outline-none text-black"
+            className="p-2 pl-4 outline-none text-black"
           />
         ) : (
-          <p className={`p-2 w-3/4 font-bold ${task.isComplete? 'line-through': ''}`}>{editedTask}</p>
+          <p className={`p-2 font-bold ${task.isComplete? 'line-through': ''}`}>{editedTask}</p>
         )}
       </div>
       <div className="hidden gap-4 group-hover:block">
