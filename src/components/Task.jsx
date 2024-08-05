@@ -15,16 +15,19 @@ export default function Task({ task, onDelete }) {
 
   return (
     <li className="p-4 my-6 group flex justify-between items-center border hover:scale-[1.025]">
-      {isEditing ? (
-        <input
-          type="text"
-          onChange={handleChange}
-          value={editedTask}
-          className="p-2 pl-4 w-3/4 outline-none text-black"
-        />
-      ) : (
-        <p className="p-2 w-3/4 font-bold">{editedTask}</p>
-      )}
+      <div className="flex items-center">
+        <button><i className="fa-solid fa-square-check mr-2 hover:scale-110 hover:text-slate-200"></i></button>
+        {isEditing ? (
+          <input
+            type="text"
+            onChange={handleChange}
+            value={editedTask}
+            className="p-2 pl-4 w-3/4 outline-none text-black"
+          />
+        ) : (
+          <p className="p-2 w-3/4 font-bold">{editedTask}</p>
+        )}
+      </div>
       <div className="hidden gap-4 group-hover:block">
         <button onClick={handleEditTask}>
           {isEditing ? (

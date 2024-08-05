@@ -10,7 +10,7 @@ export default function List() {
     if (input.current.value.trim() === '') {
       return;
     }
-
+    
     const newTask = {
       task: input.current.value,
       id: Math.random() * 1000,
